@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { RouterOutlet } from "@angular/router";
 import { invoke } from "@tauri-apps/api/core";
+import { info } from '@tauri-apps/plugin-log';
 
 @Component({
   selector: "app-root",
@@ -17,6 +18,7 @@ export class AppComponent {
     // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
     invoke<string>("greet", { name }).then((text) => {
       this.greetingMessage = text;
+      info(`Greeted with message: ${text}`);
     });
   }
 }
